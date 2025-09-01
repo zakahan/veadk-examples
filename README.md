@@ -2,8 +2,10 @@
 
 同学你好👋，你是来开发agent的吗？你听说过`veadk`么？
 
-- 你了解agent怎么部署、评测、怎么实现搜索、调用mcp之类的功能吗？
 - 你想知道如何快速开发agent么？
+- 你想了解agent怎么部署、评测、怎么实现搜索、调用mcp之类的功能吗？
+
+那你是问对人了
 
 来都来了、都是哥/姐们、给个面子，耽误你两分钟看一看`veadk-python`的使用教程好吗（不保证是保姆级）：
 
@@ -18,10 +20,42 @@
 
 1. 本项目全程使用uv进行环境管理，所以建议你也使用uv来。这里是uv的配置方式:[how-to-install-uv](github.com/volcengine/veadk-python?tab=readme-ov-file)
 2. veadk所有key的配置都依赖`config.yaml`（其实也可以用环境变量），所以希望你牢牢记得，别把这东西泄露出去。
+3. 代码运行的目录为项目根目录，因为`config.yaml`在这里（所以说如果你想在其他地方运行，那么里面要有`config.yaml`或配置的环境变量）
+
+#### 配置依赖与api-key
+
+这些都是必须的，你需要自己去申请与配置。
+1. api-key申请：
+   1. 请前往[火山方舟平台](https://console.volcengine.com/ark/)申请api-key（或者其他符合openai-api规范的模型平台）
+   2. 留着这东西，等下copy到config.yaml里
+
+2. clone项目并配置python环境
+```bash
+# clone
+git clone https://github.com/zakahan/veadk-examples.git
+cd veadk-examples
+# python env. 
+# 反正比3.10高就行
+uv venv --python 3.10  
+
+# 安装依赖（一口气全安装）
+uv sync
+
+```
+
+3. 添加config.yaml，配置需要的依赖
+```bash
+cp config.yaml.example config.yaml
+
+# 修改config.yaml第6行 ，将第一步申请到的api-key添加到这里
+```
+目前你只配置了最基础的key，剩下的key会在每个example里逐一介绍（不然一次性介绍挨个申请你可能比较累，你也不一定要用）
+
 
 ### 项目结构
 
 > 本项目是由一堆example组成的，每个example下面的子目录都可以单独运行，并且都有各自的README文件来介绍如何运行。有任何问题请直接点开对应的README来查看。
 
+- 01_basic_usage: 基础使用案例，包括单/多个Agent的运行，带工具、多轮对话，流式输出，web运行等等
 
 

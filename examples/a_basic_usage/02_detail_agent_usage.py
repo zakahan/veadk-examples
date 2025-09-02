@@ -14,7 +14,7 @@ agent = Agent(
     instruction=AGENT_INSTRUCTION,  # Agent指令，你可以理解为system-prompt
     model_name="doubao-seed-1-6-250615",  # 模型名称
     model_api_base="https://ark.cn-beijing.volces.com/api/v3/",  # 模型的API地址（默认火山方舟平台）
-    # model_api_key="你的api-key"
+    # model_api_key=os.getenv("ARK_API_KEY"),  # 模型的API密钥也可以用这种方式
 )
 
 short_term_memory = ShortTermMemory()
@@ -34,7 +34,7 @@ if __name__ == "__main__":
         )
     )
     print(completion)
-
+    # -----------------------
     # 炊烟袅袅起，
     # 青菜豆腐香满厨。
     # 此味最心安。

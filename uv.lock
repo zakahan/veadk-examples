@@ -1694,6 +1694,21 @@ wheels = [
 ]
 
 [[package]]
+name = "mcp-server-time"
+version = "2025.8.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "mcp" },
+    { name = "pydantic" },
+    { name = "tzdata" },
+    { name = "tzlocal" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/04/1c/0593458e9bd1aba06fb981092e213ee668b739f58c58e87a0880d67c7e6f/mcp_server_time-2025.8.4.tar.gz", hash = "sha256:5605e5222b8d2814160c09c38947731cf816fa977a4158c344a95f6a363ca124", size = 30140, upload-time = "2025-08-04T14:52:29.944Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/5e/f7/c961382d84df694682ebc76486b2a98cfce429c7d15b1eb3ce89e9cf7ff0/mcp_server_time-2025.8.4-py3-none-any.whl", hash = "sha256:8c7bf9ce770fc0df9268cb1ed29d1a6f0ba8e96dac68ee505d1533e58db3ae74", size = 6510, upload-time = "2025-08-04T14:52:28.891Z" },
+]
+
+[[package]]
 name = "mdurl"
 version = "0.1.2"
 source = { registry = "https://pypi.org/simple" }
@@ -3178,6 +3193,8 @@ name = "veadk-examples"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "fastmcp" },
+    { name = "mcp-server-time" },
     { name = "opensearch-py" },
     { name = "tos" },
     { name = "veadk-python" },
@@ -3190,6 +3207,8 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "fastmcp", specifier = ">=2.12.0" },
+    { name = "mcp-server-time", specifier = ">=2025.8.4" },
     { name = "opensearch-py", specifier = ">=2.8.0" },
     { name = "tos", specifier = ">=2.8.5" },
     { name = "veadk-python", specifier = ">=0.2.5" },

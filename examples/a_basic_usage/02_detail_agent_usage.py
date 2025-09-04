@@ -21,7 +21,7 @@ short_term_memory = ShortTermMemory()
 
 runner = Runner(
     agent=agent,  # agent
-    short_term_memory=short_term_memory,  # 配置短期记忆,多轮对话场景中使用（
+    short_term_memory=short_term_memory,  # 配置短期记忆
     app_name="haiku-app",
     user_id="qwerty",
 )
@@ -30,7 +30,7 @@ if __name__ == "__main__":
     completion = asyncio.run(
         runner.run(
             messages="今天吃什么",
-            session_id=str(uuid.uuid4()),  # 这就是个随机数
+            session_id=str(uuid.uuid4()),  # 这个值用来唯一标识本段短期记忆
         )
     )
     print(completion)

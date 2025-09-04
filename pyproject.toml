@@ -10,9 +10,14 @@ dependencies = [
     "tos>=2.8.5",
     "fastmcp>=2.12.0",
     "mcp-server-time>=2025.8.4",
+    "litellm<=1.75", # 高版本有个loggingworker的bug，先降一下
+    "volcengine>=1.0.198",
 ]
 
 [dependency-groups]
 dev = [
     "pre-commit>=4.3.0",
 ]
+
+[tool.uv.sources]
+veadk-python = { git = "https://github.com/volcengine/veadk-python.git" }

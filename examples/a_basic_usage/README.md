@@ -6,21 +6,20 @@
 > 
 > 注2:顺序并不表示难度
 
-| id | 文件名                                  |          描述           | 可用版本* |
-|:---|:-------------------------------------|:---------------------:|:---:|
-| 01 | 01_tiny_agent_usage.py               |      超简洁的Agent用法      | 0.2.5 |
-| 02 | 02_detail_agent_usage.py             |     详细描述的单Agent用法     | 0.2.5 |
-| 03 | 03_agent_with_tools.py               |     带工具调用的Agent用法     | 0.2.5 |
-| 04 | 04_agent_with_builtin_tools.py       |     使用内置工具的Agent      | 0.2.5 |
-| 05 | 05_agent_with_mcp_tools.py           |     使用mcp工具的Agent     | 0.2.5 |
-| 06 | 06_agent_with_multi_turn_dialogue.py |      带多轮对话的Agent      | 0.2.5 |
-| 07 | 07_multi_modal.py                    | 多模态Agent(输入为图片&输出为图片) | 0.2.5|
-| 08 | 08_agent_with_long_term_memory.py    |      带长期记忆的Agent      | 0.2.5 |
-| 09 | 09_agent_with_kb.py                  |      带知识库的Agent       | 0.2.5 |
-| 10 | 10_multiple_agents.py                |        多Agent         | 0.2.5 |
-| 11 | 11_agent_stream_chat.py              |         流式输出          | 0.2.5 |
-| 12 | 12_complex_agent.py                  |  综上所有能力复合的一个Agent案例   | 0.2.5 |
-
+| id | 文件名                                  |               描述               | 可用版本* |
+|:---|:-------------------------------------|:------------------------------:|:---:|
+| 01 | 01_tiny_agent_usage.py               |          超简洁的Agent用法           | 0.2.5 |
+| 02 | 02_detail_agent_usage.py             |         详细描述的单Agent用法          | 0.2.5 |
+| 03 | 03_agent_with_tools.py               |         带工具调用的Agent用法          | 0.2.5 |
+| 04 | 04_agent_with_builtin_tools.py       |          使用内置工具的Agent          | 0.2.5 |
+| 05 | 05_agent_with_mcp_tools.py           |         使用mcp工具的Agent          | 0.2.5 |
+| 06 | 06_multi_turn_dialogue.py |          带多轮对话的Agent           | 0.2.5 |
+| 07 | 07_multiple_agents.py                |             多Agent             | 0.2.5 |
+| 08 | 08_multi_modal.py                    |     多模态Agent(输入为图片&输出为图片)      | 0.2.5|
+| 09 | 09_agent_with_long_term_memory.py    |          带长期记忆的Agent           | 0.2.5 |
+| 10 | 10_agent_with_kb.py                  |           带知识库的Agent           | 0.2.5 |
+| 11 | 11_chat_with_llm_parameter.py        | 自定义设置llm参数（stream、temperature） | 0.2.5 |
+| 12 | 12_complex_agent.py                  |       综上所有能力复合的一个Agent案例       | 0.2.5 |
 
 
 ## 详细介绍
@@ -74,7 +73,22 @@ uv add mcp_server_time
 ```
 
 
-### 06_agent_with_multi_turn_dialogue.py
+### 06_multi_turn_dialogue.py
 
 这是一个多轮对话的案例，其实对veadk做多轮对话并不复杂。
 实现veadk多轮对话的关键在于ShortTermMemory。
+ShortTermMemory是一个类，它的作用是存储短期记忆，接受一个参数backend，如果不设置，默认为local模式（也就是in-memory）
+
+由于这里需要在Terminal里演示如何进行对话，所以建议提前配置好logging level 为ERROR，这样只有错误信息才会打印出来。
+config.yaml
+```yaml
+logging:
+  level: ERROR
+```
+
+
+### 07_multiple_agents.py
+
+
+### 08_multi_modal.py
+

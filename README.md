@@ -57,8 +57,10 @@ cp config.yaml.example config.yaml
 
 > 本项目是由一堆example组成的，每个example下面的子目录都可以单独运行，并且都有各自的README文件来介绍如何运行。有任何问题请直接点开对应的README来查看。
 
-- 章节a: `a_basic_usage`: 基础使用案例，包括单/多个Agent的运行，带工具、多轮对话，流式输出，web运行等等，除了方舟的api-key和builtin-tools的使用不可避免，其他基本上不会使用其他需要单独配置的产品能力。
-
+- 章节a: `a_basic_usage`: 基础使用案例，包括单/多个Agent的运行，带工具(mcp)、多轮对话，流式输出，多模态、长期记忆和知识库等等，如果你仅仅是想要娱乐的方式来“玩”Agent，那么这些就足够了。
+- 章节b: `b_advanced_usage`: 进阶使用案例，包括veadk-web的使用，a2a协议使用、apmplus/cozeloop上的可观测监控，vefaas上的部署、Agent评估，prompt_pilot实现prompt优化等等。
+- 章节c: `c_independent_development`: 如何对veadk进行自定义的扩展，比如新增知识库，扩展长期记忆，实现非openai api规范的模型调用等
+- 章节d: `d_demohouse`: 一些很具体的demo，这些demo也不会很复杂，往往是一个个的案例。
 
 ### 项目目标
 

@@ -3,6 +3,7 @@ import asyncio
 from veadk import Agent, Runner
 from veadk.agents.sequential_agent import SequentialAgent
 
+seq = True  # 可以选择顺序执行，也可以选择LLM决定执行顺序
 # 多Agent协同 & 顺便演示一下WorkflowAgent
 # 整个架构
 # root_agent ->
@@ -44,7 +45,6 @@ email_get_agent = Agent(
     tools=[get_email],
 )
 
-seq = True  # 可以选择顺序执行，也可以选择LLM决定执行顺序
 if seq:
     root_agent = SequentialAgent(
         name="root_agent",

@@ -57,7 +57,7 @@ cp config.yaml.example config.yaml
 
 > 本项目是由一堆example组成的，每个example下面的子目录都可以单独运行，并且都有各自的README文件来介绍如何运行。有任何问题请直接点开对应的README来查看。
 
-- 01_basic_usage: 基础使用案例，包括单/多个Agent的运行，带工具、多轮对话，流式输出，web运行等等
+- 章节a: `a_basic_usage`: 基础使用案例，包括单/多个Agent的运行，带工具、多轮对话，流式输出，web运行等等，除了方舟的api-key和builtin-tools的使用不可避免，其他基本上不会使用其他需要单独配置的产品能力。
 
 
 ### 项目目标

@@ -12,6 +12,8 @@ dependencies = [
     "mcp-server-time>=2025.8.4",
     "litellm<=1.75", # 高版本有个loggingworker的bug，先降一下
     "volcengine>=1.0.198",
+    "fastapi>=0.116.1",
+    "uvicorn[standard]>=0.35.0",
 ]
 
 [dependency-groups]

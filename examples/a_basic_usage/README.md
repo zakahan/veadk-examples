@@ -19,6 +19,8 @@
 | 09 | i_chat_with_llm_parameter.py     | 自定义设置llm参数（stream、temperature） | 0.2.5 |
 | 10 | j_agent_with_long_term_memory.py |          带长期记忆的Agent           | 0.2.5 |
 | 11 | k_agent_with_kb.py               |           带知识库的Agent           | 0.2.5 |
+| 12 | l_viking_long_term_memory.py     |      带长期记忆的Agent（viking版）      | 0.2.5 |
+| 13 | m_viking_kb.py                   |      带知识库的Agent（viking版）       | 0.2.5 |
 
 ## 详细介绍
 
@@ -56,7 +58,7 @@ veadk存在一些内置的工具，你可以直接使用，不需要自己去实
 - [内置功能介绍以及对应文档](https://volcengine.github.io/veadk-python/introduction.html)
 
 比如`web_search`功能
-![web_search](images/img-04-a.png)
+![web_search](./images/img-04-a.png)
 
 运行本脚本可以发现日志里存在function-call的内容，说明成功调用了web-search工具。
 ![web_search](images/img-04-b.png)
@@ -94,10 +96,135 @@ logging:
 
 ### 09. i_chat_with_llm_parameter.py
 
+对于llm进行精细控制的时候使用
+
+对于agent开发者来说，总是有一些场景需要你使用一些llm相关的参数的：
+- 控制文本生成的随机性需要用到`temperature`等参数，
+- 不需要thinking的场景需要将thinking关闭。本文件演示了这些参数如何设置。
+- 需要流失输出的场景需要设置`stream`等等。
+
+这一脚本演示了包括：
+`temperature`, `top_p`, `thinking`, `max_tokens`, `max_llm_calls`,`stream`在内等多种参数配置方式。
+
+这些参数大部分都在Agent中的model_extra_config参数设置。
+
+此外，这里没有演示`extra_headers`，这个参数也可以在model_extra_config里配置：
+有关这个参数看[文档](https://www.volcengine.com/docs/82379/1330626)
+
+
 ### 09. j_agent_with_long_term_memory.py
 
-长期记忆agent演示，
+长期记忆agent演示
+```python
+ltm = LongTermMemory(
+    backend="local",
+)
+```
+
+```python
+agent = Agent(
+	# .......
+    long_term_memory=ltm,
+)
+
+```
+
+注意⚠️
+`ltm.add_session_to_memory`是一个异步函数。
 
 ### 10. k_agent_with_kb.py
+...
+
+### 11. l_viking_long_term_memory.py
+
+本脚本演示如何使用viking记忆库+veadk实现带持久化长期记忆的Agent
+
+#### 基本配置介绍
+- 配置`config.yaml`,直接在最下方添加一段内容，缺失字段咱们马上会说怎么写，先copy过去
+   - 或者你直接把config.full里的内容直接copy过去，以后慢慢加。
+
+```yaml
+volcengine:
+  access_key:
+  secret_key:
+  
+database:
+  viking:
+    project: default    # user project in Volcengine Viking DB
+    region: cn-beijing
+```
+
+![viking展示界面](./images/img-viking.png)
+
+注意，viking页面最上方左侧有一个`default(默认项目)`（上图红圈标记处），这里是可选的，你可以选择新建项目，保证`config.yaml`配置项里的project字段要与之对应即可。
+
+首先介绍如何配置viking长期记忆
+- 开通viking记忆库
+	1. 点击[🔗链接](https://console.volcengine.com/vikingdb/region:vikingdb+cn-beijing/home?projectName=default)进入viking知识库界面
+	2. 选择最右侧的记忆库，点击开通。
+- access_key/secret_key
+    1. 依旧是在这个链接（或者火山引擎的任意一个链接里），点击最右上角头像，选中api访问密钥
+    2. 点进去后，新建密钥，复制ak和sk，添加到config.yaml的对应位置即可
+
+![image](./images/aksk.png)
+
+随后操作与local记忆库一致，在执行add_session_to_memory后，veadk会调用viking的`/api/memory/session/add`接口，向指定的记忆库中添加多轮对话数据，viking记忆库系统将根据记忆库的配置进行信息抽取并形成结构化的用户记忆。
+
+
+#### 注意⚠️（如果你选择了viking记忆库）：
+- **历史首次记忆添加延迟约3～5分钟**：对viking的某个具体的记忆库，会在**历史第一次add消息时进行初始化**，也就是说你第一次调用add操作后，会有一段时间是无法继续对viking记忆库做处理的（这一段时间大概有3～5分钟），请耐心等待。
+- **非首次记忆添加延迟约20～30秒**：由于viking记忆库内置了memory summary机制（基于llm），会有一定的异步延迟（大约20～30秒），导致你添加的记忆是无法立刻被搜索到的。（但对于长期记忆场景而言，这个设计个人认为是能接受的）
+
+
+### 12. m_viking_kb.py
+
+在config.yaml的配置上，需要添加
+```yaml
+volcengine:		# （如果你之前在viking记忆库添加了这段不用重复添加）
+  # [optional] for Viking DB and `web_search` tool
+  access_key:
+  secret_key:
+
+database:
+  viking:		# （如果你之前在viking记忆库添加了这段不用重复添加）
+    project: default    # user project in Volcengine Viking DB
+    region: cn-beijing
+  tos:
+    endpoint: tos-cn-beijing.volces.com # default Volcengine TOS endpoint
+    region: cn-beijing                  # default Volcengine TOS region
+    bucket:
+
+```
+之所以多了tos的配置，是因为我们采用tos方式来对viking进行文件的上传。
+
+下面介绍如何开通viking知识库和tos（对象存储）
+首先介绍如何开通viking知识库
+1. 开通viking知识库
+	1. 点击[🔗链接](https://console.volcengine.com/vikingdb/region:vikingdb+cn-beijing/home?projectName=default)进入viking知识库界面
+	2. 选择最中间的知识库，点击开通。
+2. 开通tos
+   1. 点击[🔗链接](https://console.volcengine.com/tos/bucket?projectName=default)
+   2. 选择创建桶
+   3. 创建完毕后，在config.yaml tos->bucket里添加你创建的桶名称
+3. 关于火山ak/sk：
+   1. 在11里介绍过了，这里不重复介绍了
+
+
+#### 注意⚠️（如果你选择了viking知识库）：
+- **历史首次记忆添加延迟约3～5分钟**：对viking的某个具体的知识库，会在**创建知识库后进入构建过程**（初始化这一块上，具体细节和记忆库不太一样，但在veadk这边体现的都是首次`add`之后，短时间内无法`search`），也就是说你第一次调用add操作后，会有一段时间是无法继续对viking记忆库做处理的（这一段时间大概有3～5分钟），请耐心等待。
+- **非首次记忆添加几乎无延迟**
+
+#### 运行脚本
+
+运行脚本，第一次肯定会报错的....（这里我想过整个包装抽象，但感觉还是保留一点错误原本的样子....）
+![image](./images/viking-index-not-ready.png)
+
+`ValueError: Error in search_knowledge: index not ready`
+
+这个错误源自于viking知识库的初始化，初始化之后需要有一个构建阶段，构建这段时间内，调用search_knowledge_base会返回告诉你index not ready.
+
+![image](./images/viking-build.png)
+
+构建完成后，再次运行脚本即可。
 
 

@@ -35,13 +35,15 @@
 # clone
 git clone https://github.com/zakahan/veadk-examples.git
 cd veadk-examples
-# python env. 
-# 反正比3.10高就行
-uv venv --python 3.10  
 
 # 安装依赖（一口气全安装）
 uv sync
 
+# 激活环境
+# mac or linux
+source .venv/bin/activate
+# windows
+.\.venv\Scripts\activate
 ```
 
 3. 添加config.yaml，配置需要的依赖

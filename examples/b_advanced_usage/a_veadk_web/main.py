@@ -30,6 +30,6 @@ kb.add(data=mock_data, app_name=APP_NAME)
 root_agent = Agent(
     name="chat_agent",
     description="聊天agent",
-    instruction="你可以调用工具来进行计算，可以调用知识库，注意：任何涉及到日起计算的工具，你必须调用计算工具来算，不允许你自己来计算，",
+    instruction="你可以调用知识库。",
     knowledgebase=kb,
 )

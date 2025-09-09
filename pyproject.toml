@@ -5,7 +5,6 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "veadk-python>=0.2.5",
     "opensearch-py>=2.8.0",
     "tos>=2.8.5",
     "fastmcp>=2.12.0",
@@ -14,6 +13,8 @@ dependencies = [
     "volcengine>=1.0.198",
     "fastapi>=0.116.1",
     "uvicorn[standard]>=0.35.0",
+    "veadk-python",
+    "typer>=0.17.4",            # 用于veadk命令行工具
 ]
 
 [dependency-groups]
@@ -23,3 +24,4 @@ dev = [
 
 [tool.uv.sources]
 veadk-python = { git = "https://github.com/volcengine/veadk-python.git" }
+

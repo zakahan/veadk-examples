@@ -21,7 +21,7 @@
 
 一个简要的demo，展示了如何使用veadk_web。
 ```bash
-cd b_advanced_usage
+cd examples/b_advanced_usage
 
 # 启动
 veadk web --host 0.0.0.0
@@ -29,12 +29,14 @@ veadk web --host 0.0.0.0
 # LONG_TERM_MEMORY_BACKEND=local veadk web
 
 # 进入 http://0.0.0.0:8000查看
+# windows端如果看不到可以切换到 http://localhost:8000
 ```
 
-![veadk-web-2](images/veadk-web-2.png)
-
+![veadk-web-2](images/veadk_web.png)
 
 ### 02. b_a2a_demo
+
+这个demo用来简要的演示a2a服务。
 
 - 启动服务端
 ```bash
@@ -51,7 +53,34 @@ python client.py
 ```
 
 
+
+- 关于a2a协议，更多的信息可以参考以下链接
+
+https://github.com/a2aproject/a2a-python
+
+https://a2a-protocol.org/latest/
+
+
+
+- 另外启动server之后，可以通过
+
+http://localhost:8022/.well-known/agent-card.json
+
+来查看agent-card.json的信息
+
+
+
+对于a2a协议，你可以大致理解为：我们肯定有需求，需要将一些agent部署到某个平台，在本地通过另一些agent调用，实现两个agent之间的沟通，那么这个沟通的协议是什么？a2a。
+
+当然你可以使用其他的协议来完成这个事情，比如mcp协议（这里埋个伏笔，因为veadk后面也做了），但a2a是一个更推荐的选择。
+
+
+
 ### 03. c_observability
+
+
+
+
 
 
 

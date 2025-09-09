@@ -60,6 +60,24 @@ veadk存在一些内置的工具，你可以直接使用，不需要自己去实
 比如`web_search`功能
 ![web_search](./images/img-04-a.png)
 
+
+
+具体到web_search，需要配置火山引擎的ak和sk
+
+```yaml
+volcengine:
+  access_key:
+  secret_key:
+```
+
+1. 进入火山引擎（或者火山引擎的任意一个链接里），点击最右上角头像，选中`api访问密钥`
+
+2. 点进去后，新建密钥，复制ak和sk，添加到config.yaml的对应位置即可
+
+![image](./images/aksk.png)
+
+
+
 运行本脚本可以发现日志里存在function-call的内容，说明成功调用了web-search工具。
 ![web_search](images/img-04-b.png)
 
@@ -163,10 +181,7 @@ database:
 	1. 点击[🔗链接](https://console.volcengine.com/vikingdb/region:vikingdb+cn-beijing/home?projectName=default)进入viking知识库界面
 	2. 选择最右侧的记忆库，点击开通。
 - access_key/secret_key
-    1. 依旧是在这个链接（或者火山引擎的任意一个链接里），点击最右上角头像，选中api访问密钥
-    2. 点进去后，新建密钥，复制ak和sk，添加到config.yaml的对应位置即可
-
-![image](./images/aksk.png)
+    1. 在第五节介绍过了
 
 随后操作与local记忆库一致，在执行add_session_to_memory后，veadk会调用viking的`/api/memory/session/add`接口，向指定的记忆库中添加多轮对话数据，viking记忆库系统将根据记忆库的配置进行信息抽取并形成结构化的用户记忆。
 
@@ -207,16 +222,18 @@ database:
    2. 选择创建桶
    3. 创建完毕后，在config.yaml tos->bucket里添加你创建的桶名称
 3. 关于火山ak/sk：
-   1. 在11里介绍过了，这里不重复介绍了
+   1. 在第五节里介绍过了，这里不重复介绍了
 
 
 #### 注意⚠️（如果你选择了viking知识库）：
 - **历史首次记忆添加延迟约3～5分钟**：对viking的某个具体的知识库，会在**创建知识库后进入构建过程**（初始化这一块上，具体细节和记忆库不太一样，但在veadk这边体现的都是首次`add`之后，短时间内无法`search`），也就是说你第一次调用add操作后，会有一段时间是无法继续对viking记忆库做处理的（这一段时间大概有3～5分钟），请耐心等待。
 - **非首次记忆添加几乎无延迟**
 
+
+
 #### 运行脚本
 
-运行脚本，第一次肯定会报错的....（这里我想过整个包装抽象，但感觉还是保留一点错误原本的样子....）
+运行脚本，**第一次肯定会报错**的....（这里我想过整个包装抽象，但感觉还是保留一点错误原本的样子更好....）
 ![image](./images/viking-index-not-ready.png)
 
 `ValueError: Error in search_knowledge: index not ready`
@@ -227,4 +244,4 @@ database:
 
 构建完成后，再次运行脚本即可。
 
-
+关于知识库的更多操作会在**章节c_additional_usage**介绍

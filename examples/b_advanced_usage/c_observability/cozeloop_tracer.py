@@ -1,5 +1,4 @@
 import os
-import json
 import asyncio
 from veadk import Agent, Runner
 from veadk.tracing.telemetry.exporters.cozeloop_exporter import CozeloopExporter
@@ -17,7 +16,7 @@ session_id = "veadk_playground_session"
 #   opentelemetry:
 #     cozeloop:
 #       endpoint: https://api.coze.cn/v1/loop/opentelemetry/v1/traces
-#       api_key:
+#       api_key:  # coze loop `token`       # 如何配置请看本章的README.md
 #       service_name: # Coze loop `space_id`
 
 assert os.getenv("OBSERVABILITY_OPENTELEMETRY_COZELOOP_SERVICE_NAME") is not None, (
@@ -48,15 +47,8 @@ runner = Runner(
 # 并且在 `run` 中指定保存，runner将会尝试保存 tracing 文件
 asyncio.run(
     runner.run(
-        messages="北京的天气怎么样？", session_id=session_id, save_tracing_data=True
+        messages="北京的天气怎么样？", session_id=session_id, save_tracing_data=False
     )
 )
 
-print(f"Tracing file path: {tracer._trace_file_path}")
-
-with open(tracer._trace_file_path, "r") as f:
-    tracing_content = f.read()
-
-print(
-    f"Tracing file content:\n{json.dumps(json.loads(tracing_content), indent=2, ensure_ascii=False)}"
-)
+print("请前往 https://www.coze.cn/loop 查看")

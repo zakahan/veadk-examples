@@ -1,3 +1,5 @@
+
+
 # Advanced-Usage
 
 包括veadk-web的使用，a2a协议使用、apmplus/cozeloop上的可观测监控，vefaas上的部署、Agent评估，prompt_pilot实现prompt优化等等。
@@ -78,10 +80,112 @@ http://localhost:8022/.well-known/agent-card.json
 
 ### 03. c_observability
 
+这部分演示的是agent可观测技术，通俗的来说，ai agent和传统服务一样，需要有日志来记录他的运行，记录每次输入输出，以及token消耗等信息，这就需要veadk通过埋点的方式来进行上报。
+
+veadk通过OpenTelemetry进行上报，具体可以看[这里的源码部分](https://github.com/volcengine/veadk-python/tree/main/veadk/tracing)
 
 
 
+可观测部分的demo分为三部分，第一个为本地模式，后两种为上报模式
 
+- local_tracer.py: trace的本地记录
+- cozeloop_tracer.py: trace信息上报到cozeloop
+- apmplus_tracer.py: trace上报到apmplus
+
+
+
+##### 03-1. local_tracer.py
+
+
+
+##### 03-2. coze_tracer.py
+
+准备工作
+
+首先还是配置config.yaml
+
+```yaml
+observability:
+  opentelemetry:
+    cozeloop:
+      endpoint: https://api.coze.cn/v1/loop/opentelemetry/v1/traces
+      api_key: # app_key
+      service_name:  # Coze loop `space_id`
+```
+
+api_key和service_name分别先空着，根据我接下来的操作填入即可
+
+1. **前往 https://www.coze.cn/loop，选择右上角登录扣子**
+
+![image-20250910201330864](./images/image-20250910201330864.png)
+
+2. **进入扣子罗盘**
+
+进入之后默认是Demo空间，我们要先切换到个人空间（或者你可以创建新的空间，这个随你）
+
+随后获取两个信息，分别是
+
+`Space Id`和`Secret token`，分别对应了config.yaml里的`service_name`和`api_key`
+
+> - space_id -> config.yaml -> service_name
+>
+> - token -> config.yaml -> api_key
+
+首先可以直接在空间url里获取你的space-id, 而app_key的获取则比较复杂，如图所示，可以从这两个地方获取这两个信息。
+
+![image-20250910201807614.png](./images/image-20250910201807614.png)
+
+3. **获取space_id，放入service_name字段中**
+
+我们首先从url里读取Space Id，将其填入，随后点击授权，创建个人访问令牌，注意，必须至少选择罗盘的授权。
+
+![image-20250910202458412](./images/image-20250910202458412.png)
+
+4. **获取Secret token，放入config.yaml里的api_key**
+
+这里创建token即可，注意过期时间，如果你跑了一段时间之后发现上报不上去了，可能是过期时间到了。另外还是像刚才说的，授权里至少选罗盘，其他的看你。下面还有访问空间，访问空间选择你之前确定的那个，如果默认的话就是个人空间。
+
+![image-20250910202836103](./images/image-20250910202836103.png)
+
+点击确定
+
+![image-20250910203650816](./images/image-20250910203650816.png)
+
+
+
+随后会出现一个提示，告诉你这个令牌仅显示一次，复制好这个token，copy到config.yaml，cozeloop的api_key位置
+
+![image-20250910203718999](./images/image-20250910203718999.png)
+
+
+
+**注意：如果你使用的是本地部署的cozeloop，我没有研究过，可能endpoint也需要修改**
+
+
+
+ok，可以继续运行脚本了
+
+5. 运行"examples/b_advanced_usage/c_observability/cozeloop_tracer.py"
+
+```bash
+python examples/b_advanced_usage/c_observability/cozeloop_tracer.py
+```
+
+
+
+6. 去刚刚的cozeloop里看数据
+
+![image-20250910204611050](./images/image-20250910204611050.png)
+
+
+
+![image-20250910204705280](./images/image-20250910204705280.png)
+
+可以看到，这是一个完整的调用树，这个调用树和local中dump下来的是保持一致的
+
+你的system-prompt还有工具调用信息啊，输入输出也以及token消耗信息都会在这里看到
+
+这里有一点说明一下，你可以选择AllSpan也可以选择RootSpan，如果是RootSpan，那么就是只显示最外层的调用Span（也就是invocation），如果是AllSpan，那么就是显示所有的调用
 
 
 ### 04. d_vefaas_deploy

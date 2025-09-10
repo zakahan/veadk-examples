@@ -181,7 +181,7 @@ database:
 	1. 点击[🔗链接](https://console.volcengine.com/vikingdb/region:vikingdb+cn-beijing/home?projectName=default)进入viking知识库界面
 	2. 选择最右侧的记忆库，点击开通。
 - access_key/secret_key
-    1. 在第五节介绍过了
+    1. 在第四节介绍过了
 
 随后操作与local记忆库一致，在执行add_session_to_memory后，veadk会调用viking的`/api/memory/session/add`接口，向指定的记忆库中添加多轮对话数据，viking记忆库系统将根据记忆库的配置进行信息抽取并形成结构化的用户记忆。
 
@@ -222,7 +222,7 @@ database:
    2. 选择创建桶
    3. 创建完毕后，在config.yaml tos->bucket里添加你创建的桶名称
 3. 关于火山ak/sk：
-   1. 在第五节里介绍过了，这里不重复介绍了
+   1. 在第四节里介绍过了，这里不重复介绍了
 
 
 #### 注意⚠️（如果你选择了viking知识库）：

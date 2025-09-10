@@ -115,7 +115,7 @@ observability:
 
 api_key和service_name分别先空着，根据我接下来的操作填入即可
 
-1. **前往 https://www.coze.cn/loop，选择右上角登录扣子**
+1. **前往 [扣子罗盘](https://www.coze.cn/loop)，选择右上角登录扣子**
 
 ![image-20250910201330864](./images/image-20250910201330864.png)
 
@@ -135,9 +135,9 @@ api_key和service_name分别先空着，根据我接下来的操作填入即可
 
 ![image-20250910201807614.png](./images/image-20250910201807614.png)
 
-3. **获取space_id，放入service_name字段中**
+3. **获取space_id，放入config.yaml的service_name字段中**
 
-我们首先从url里读取Space Id，将其填入，随后点击授权，创建个人访问令牌，注意，必须至少选择罗盘的授权。
+我们首先从url里读取Space Id，将其填入config.yaml的service_name字段中，随后点击授权，创建个人访问令牌，注意，必须**至少**选择罗盘的授权，其他的你随意。
 
 ![image-20250910202458412](./images/image-20250910202458412.png)
 

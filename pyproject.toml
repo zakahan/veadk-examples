@@ -14,7 +14,7 @@ dependencies = [
     "fastapi>=0.116.1",
     "uvicorn[standard]>=0.35.0",
     "veadk-python",
-    "typer>=0.17.4",            # 用于veadk命令行工具
+    "typer>=0.17.4", # 用于veadk命令行工具
 ]
 
 [dependency-groups]

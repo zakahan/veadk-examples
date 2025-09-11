@@ -25,7 +25,9 @@ runner = Runner(
 # 并且在 `run` 中指定保存，runner将会尝试保存 tracing 文件
 asyncio.run(
     runner.run(
-        messages="北京的天气怎么样？", session_id=session_id, save_tracing_data=True
+        messages="北京的天气怎么样？",
+        session_id=session_id,
+        save_tracing_data=True,  # 这个字段会把 tracing 保存到 tracer._trace_file_path
     )
 )
 

@@ -70,11 +70,9 @@ volcengine:
   secret_key:
 ```
 
-1. 进入火山引擎（或者火山引擎的任意一个链接里），点击最右上角头像，选中`api访问密钥`
+1. 进入火山引擎[api访问控制](https://console.volcengine.com/iam/keymanage)
 
 2. 点进去后，新建密钥，复制ak和sk，添加到config.yaml的对应位置即可
-
-![image](./images/aksk.png)
 
 
 

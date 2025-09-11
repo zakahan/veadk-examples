@@ -96,6 +96,8 @@ veadk通过OpenTelemetry进行上报，具体可以看[这里的源码部分](ht
 
 ##### 03-1. local_tracer.py
 
+local模式无需配置其他的config.yaml项目了，运行即可。
+（注：0.2.7及以下版本，windows用户无法运行本代码，请直接跳过。后续版本会修改）
 
 
 ##### 03-2. coze_tracer.py
@@ -171,8 +173,6 @@ ok，可以继续运行脚本了
 python examples/b_advanced_usage/c_observability/cozeloop_tracer.py
 ```
 
-
-
 6. 去刚刚的cozeloop里看数据
 
 ![image-20250910204611050](./images/image-20250910204611050.png)
@@ -190,7 +190,176 @@ python examples/b_advanced_usage/c_observability/cozeloop_tracer.py
 
 ### 04. d_vefaas_deploy
 
+本脚本演示如何在vefaas上部署一个agent，方便你可以远程调用，由于我比较懒，所以直接使用veadk默认的demo吧
+
+首先说config.yaml里要配置什么，这次的话还是只需要配置火山引擎的ak和sk。（在章节a的第四节介绍过了，我就不重复了）
+
+其次，火山引擎开通内容
+
+
+
+
+
+1. 在这之前，记得先充值哈
+
+
+
+<img src="C:\MyScripts\Indie\veadk-examples\examples\b_advanced_usage\images\image-20250910212006808.png" alt="image-2025091021200680s8" style="zoom:30%;" />
+
+
+
+
+
+2. **进入[火山引擎函数服务](https://www.volcengine.com/product/vefaas)（vefaas)**，点击立即使用
+
+![image-20250910211055473](C:\MyScripts\Indie\veadk-examples\examples\b_advanced_usage\images\image-20250910211055473.png)
+
+3. 授权开通
+
+![image-20250910211150408](C:\MyScripts\Indie\veadk-examples\examples\b_advanced_usage\images\image-20250910211150408.png)
+
+
+
+4. 进入[火山引擎API网关](https://www.volcengine.com/product/apig) ，同样点击立即使用，开通授权
+
+因为vefaas需要公网访问，所以要创建一个API网关
+
+
+
+这里强烈建议直接创建一个API网关实例，方便后续使用，当然没有也可以，不过我建议创建一个，这样后续速度会快很多。比如我这里就创建了一个网关实例名称为`veadk-apig`
+
+![image-20250911162929652](C:\MyScripts\Indie\veadk-examples\examples\b_advanced_usage\images\image-20250911162929652.png)
+
+5. 为授权ServerlessApplicationRole角色
+
+目前`veadk==0.2.7`，这一步无法自动完成，需要手动执行，后续可能会优化
+
+首先，随便选择一个vefaas的应用模板，比如[这个](https://console.volcengine.com/vefaas/region:vefaas+cn-beijing/application/create?templateId=67f7b4678af5a6000850556c)。
+
+然后添加这些策略，点击一键添加策略，退出即可
+
+![image-20250911160810850](C:\MyScripts\Indie\veadk-examples\examples\b_advanced_usage\images\image-20250911160810850.png)
+
+
+
+
+
+5. 开始vefaas部署流程
+
+```bash
+# 进入操作目录
+cd examples/b_advanced_usage/d_vefaas_deploy
+
+# veadk 初始化
+veadk init 
+# 接下来一路回车即可，(如果前面创建了apig，那么在第二次里输入apig名称）直到让你选mode1还是mode2
+
+# 选择mode1
+```
+
+![image-20250911164550876](C:\MyScripts\Indie\veadk-examples\examples\b_advanced_usage\images\image-20250911164550876.png)
+
+
+
+然后你会看到，这里出现了一套代码
+
+![image-20250910213114745](C:\MyScripts\Indie\veadk-examples\examples\b_advanced_usage\images\image-20250910213114745.png)
+
+
+
+首先把你的config.yaml 直接copy到veadk_cloud_proj里，这个config.yaml至少要有
+
+1. model agent部分
+2. 火山 ak和sk部分
+
+![image-20250910213704216](C:\MyScripts\Indie\veadk-examples\examples\b_advanced_usage\images\image-20250910213704216.png)
+
+3. vefaas的配置（可选）
+
+另外，如果你需要在Vefaas部署的agent上记录Trace，那么也要在config.yaml里记录`observability`部分（这个在03节说过了，不多说了）。其次要开启tracer。
+
+4. vefaas 鉴权关闭
+
+vefaas_enable_key_auth: false 关闭鉴权，方便我们演示使用。（注意，这个在0.2.7是默认开启的，请拉取最新的分支）
+
+总之，要配置这些
+
+```yaml
+model:
+  agent:
+    provider: openai
+    name: doubao-1-5-pro-256k-250115
+    api_base: https://ark.cn-beijing.volces.com/api/v3/
+    api_key: 
+volcengine:
+  # [optional] for Viking DB and `web_search` tool
+  access_key:
+  secret_key:
+
+
+observability:  # （可选，开启trace用的）
+    cozeloop:
+      endpoint: https://api.coze.cn/v1/loop/opentelemetry/v1/traces
+      api_key:
+      service_name:
+
+veadk:     # (可选，开启tracer用的)
+  tracer:
+    apmplus: false
+    cozeloop: true
+    tls: false
+    
+vefaas_enable_key_auth: false
+```
+
+
+
+4. requirements.txt
+
+veadk_cloud_proj/src/requirements.txt
+
+这个是配置依赖项的
+
+不多说了，建议直接至少配置这些,不然可能跑不起来。
+
+```ini
+veadk-python==0.2.6
+fastapi
+uvicorn[standard]
+```
+
+
+
+5. 运行代码
+
+注意1：这对于win平台用户，这里有个事情需要注意，部署之前必须要保证所有的换行符都是LF的，而不是CRLF的，不然vefaas上会出错的
+
+```bash
+# 在之前的基础上，（当前路径为d_vefaas_deploy）
+cd veadk_cloud_proj
+python deploy.py 
+```
+
+![image-20250911164907633](C:\MyScripts\Indie\veadk-examples\examples\b_advanced_usage\images\image-20250911164907633.png)
+
+
+
+
+
+OK，整个部署流程完毕。（中间可能出现各种意外错误，如果遇到各种问题，欢迎提出issue）
+
+如果你走完整个流程可以在这里看到一个URL，这就是你应用所在的URL。
+
+
+
+
+
+
+
+
 ### 05. e_evaluate
 
 ### 06. f_prompt_pilot
+
+
 

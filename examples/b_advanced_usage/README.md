@@ -204,7 +204,7 @@ python examples/b_advanced_usage/c_observability/cozeloop_tracer.py
 
 
 
-<img src="C:\MyScripts\Indie\veadk-examples\examples\b_advanced_usage\images\image-20250910212006808.png" alt="image-2025091021200680s8" style="zoom:30%;" />
+<img src="./images/image-20250910212006808.png" alt="image-2025091021200680s8" style="zoom:30%;" />
 
 
 
@@ -212,11 +212,11 @@ python examples/b_advanced_usage/c_observability/cozeloop_tracer.py
 
 2. **进入[火山引擎函数服务](https://www.volcengine.com/product/vefaas)（vefaas)**，点击立即使用
 
-![image-20250910211055473](C:\MyScripts\Indie\veadk-examples\examples\b_advanced_usage\images\image-20250910211055473.png)
+![image-20250910211055473](./images/image-20250910211055473.png)
 
 3. 授权开通
 
-![image-20250910211150408](C:\MyScripts\Indie\veadk-examples\examples\b_advanced_usage\images\image-20250910211150408.png)
+![image-20250910211150408](./images/image-20250910211150408.png)
 
 
 
@@ -228,7 +228,7 @@ python examples/b_advanced_usage/c_observability/cozeloop_tracer.py
 
 这里强烈建议直接创建一个API网关实例，方便后续使用，当然没有也可以，不过我建议创建一个，这样后续速度会快很多。比如我这里就创建了一个网关实例名称为`veadk-apig`
 
-![image-20250911162929652](C:\MyScripts\Indie\veadk-examples\examples\b_advanced_usage\images\image-20250911162929652.png)
+![image-20250911162929652](./images/image-20250911162929652.png)
 
 5. 为授权ServerlessApplicationRole角色
 
@@ -238,7 +238,7 @@ python examples/b_advanced_usage/c_observability/cozeloop_tracer.py
 
 然后添加这些策略，点击一键添加策略，退出即可
 
-![image-20250911160810850](C:\MyScripts\Indie\veadk-examples\examples\b_advanced_usage\images\image-20250911160810850.png)
+![image-20250911160810850](./images/image-20250911160810850.png)
 
 
 
@@ -257,13 +257,13 @@ veadk init
 # 选择mode1
 ```
 
-![image-20250911164550876](C:\MyScripts\Indie\veadk-examples\examples\b_advanced_usage\images\image-20250911164550876.png)
+![image-20250911164550876](./images/image-20250911164550876.png)
 
 
 
 然后你会看到，这里出现了一套代码
 
-![image-20250910213114745](C:\MyScripts\Indie\veadk-examples\examples\b_advanced_usage\images\image-20250910213114745.png)
+![image-20250910213114745](./images/image-20250910213114745.png)
 
 
 
@@ -272,7 +272,7 @@ veadk init
 1. model agent部分
 2. 火山 ak和sk部分
 
-![image-20250910213704216](C:\MyScripts\Indie\veadk-examples\examples\b_advanced_usage\images\image-20250910213704216.png)
+![image-20250910213704216](./images/image-20250910213704216.png)
 
 3. vefaas的配置（可选）
 
@@ -340,7 +340,7 @@ cd veadk_cloud_proj
 python deploy.py 
 ```
 
-![image-20250911164907633](C:\MyScripts\Indie\veadk-examples\examples\b_advanced_usage\images\image-20250911164907633.png)
+![image-20250911164907633](./images/image-20250911164907633.png)
 
 
 

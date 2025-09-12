@@ -97,7 +97,25 @@ veadk通过OpenTelemetry进行上报，具体可以看[这里的源码部分](ht
 ##### 03-1. local_tracer.py
 
 local模式无需配置其他的config.yaml项目了，运行即可。
-（注：0.2.7及以下版本，windows用户无法运行本代码，请直接跳过。后续版本会修改）
+
+运行后你会看到一个trace文件，里面记录了所有上报的属性信息。
+
+![image-20250912150647103](images/image-20250912150647103.png)
+
+这里大致介绍一下，
+
+
+
+| span_name            | 表示                           |
+| -------------------- | ------------------------------ |
+| invocation           | 整个对话过程                   |
+| agent_run [xxxxx]    | 表示名称为xxxxx的agent运行过程 |
+| call_llm             | 表示调用大模型过程             |
+| execute_tool  xxxxxx | 表示执行function过程           |
+
+所有attributes的埋点设置是基于OpenTelemetry的，其具体含义等可以参考[大模型埋点字段与指标说明](https://www.volcengine.com/docs/6431/1546227)中的`Span Attributes`部分
+
+
 
 
 ##### 03-2. coze_tracer.py
@@ -202,9 +220,7 @@ python examples/b_advanced_usage/c_observability/cozeloop_tracer.py
 
 1. 在这之前，记得先充值哈
 
-
-
-<img src="./images/image-20250910212006808.png" alt="image-2025091021200680s8" style="zoom:30%;" />
+![./images/image-20250910212006808.png](./images/image-20250910212006808.png)
 
 
 
@@ -356,8 +372,23 @@ OK，整个部署流程完毕。（中间可能出现各种意外错误，如果
 
 
 
-
 ### 05. e_evaluate
+
+这部分涉及的config.yaml
+
+```yaml
+model:
+	judge:
+		api_base: https://ark.cn-beijing.volces.com/api/v3/
+		name: doubao-seed-1-6-259615
+		api_key: your-api-key
+```
+
+演示了如何通过deepeval对agent进行评测
+
+
+
+
 
 ### 06. f_prompt_pilot
 

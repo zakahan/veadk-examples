@@ -15,6 +15,8 @@ dependencies = [
     "uvicorn[standard]>=0.35.0",
     "veadk-python",
     "typer>=0.17.4", # 用于veadk命令行工具
+    "deepeval>=3.4.8",
+    "prometheus-client>=0.22.1",
 ]
 
 [dependency-groups]
@@ -23,5 +25,5 @@ dev = [
 ]
 
 [tool.uv.sources]
-veadk-python = { git = "https://github.com/volcengine/veadk-python.git" }
+veadk-python = { git = "https://github.com/zakahan/veadk-python.git", rev = "fix/platform" }
 

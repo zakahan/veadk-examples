@@ -1,4 +1,6 @@
 import asyncio
+from uuid import uuid4
+
 from veadk import Agent, Runner
 from google.adk.tools.mcp_tool.mcp_toolset import MCPToolset
 from google.adk.tools.mcp_tool.mcp_session_manager import StdioConnectionParams
@@ -33,7 +35,7 @@ if __name__ == "__main__":
     completion = asyncio.run(
         runner.run(
             messages="现在悉尼时间是多少？",
-            session_id="asdfghjkl",
+            session_id=uuid4().hex,
         )
     )
     print(completion)

@@ -9,9 +9,7 @@ from veadk.memory.short_term_memory import ShortTermMemory
 
 # 这里先用local的为例，选local是因为它无持久化也就无代价，方便做演示
 # 你可以自己设置其他的backend，比如viking或者是opensearch等等，关于viking后面章节b火山产品部分会专门写一个demo的
-ltm = LongTermMemory(
-    backend="local",
-)
+ltm = LongTermMemory(backend="local", index="ltm_local")
 # 短期记忆
 stm = ShortTermMemory(
     backend="local",
@@ -42,6 +40,7 @@ runner = Runner(
 )
 
 # 第一个对话
+print("--------------------------第一次对话--------------------------")
 first_conversation_session_id = str(uuid.uuid4())
 message = "你好,能给我讲一讲《三体》里汪淼的故事吗"
 completion = asyncio.run(
@@ -66,9 +65,12 @@ async def add_session_to_memory():
 
 asyncio.run(add_session_to_memory())
 
-print("successfully add session to long term memory")
+print(
+    "-----------------------successfully add session to long term memory-----------------"
+)
+print("--------------------------第二次对话--------------------------")
 
-second_conversation_session_id = str(uuid.uuid4())
+second_conversation_session_id = uuid.uuid4().hex
 message = "上次讲到哪个主角了？这次讲下一部的主角吧，大概讲一下。"
 completion = asyncio.run(
     runner.run(

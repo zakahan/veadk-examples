@@ -1,4 +1,5 @@
 import os
+from uuid import uuid4
 
 os.environ["LOGGING_LEVEL"] = "ERROR"  # noqa
 from veadk import Agent, Runner
@@ -36,7 +37,7 @@ async def main():
             break
         completion = await runner.run(
             messages=user_input,
-            session_id="asdfghjkl",
+            session_id=uuid4().hex,
         )
         print(f"Assistant: {completion}")
 

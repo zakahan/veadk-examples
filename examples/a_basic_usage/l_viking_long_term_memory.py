@@ -19,6 +19,7 @@ from veadk.memory.short_term_memory import ShortTermMemory
 
 ltm = LongTermMemory(
     backend="viking",  # IMPORTANT: 这里需要改成viking
+    index="ltm_local",
 )
 # 短期记忆
 stm = ShortTermMemory(

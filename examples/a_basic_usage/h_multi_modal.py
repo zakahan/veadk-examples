@@ -1,5 +1,6 @@
 import asyncio
 import os
+from uuid import uuid4
 
 from veadk import Agent, Runner
 from veadk.tools.builtin_tools.image_generate import image_generate
@@ -56,7 +57,7 @@ if __name__ == "__main__":
         completion = asyncio.run(
             runner.run(
                 messages=message,
-                session_id="asdfghjkl",
+                session_id=uuid4().hex,
             )
         )
         print(completion)

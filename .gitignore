@@ -209,3 +209,4 @@ __marimo__/
 # veadk
 **/config.yaml
 **/.deepeval/
+/uv.lock

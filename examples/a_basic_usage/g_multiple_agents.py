@@ -1,4 +1,5 @@
 import asyncio
+from uuid import uuid4
 
 from veadk import Agent, Runner
 from veadk.agents.sequential_agent import SequentialAgent
@@ -70,7 +71,7 @@ if __name__ == "__main__":
     completion = asyncio.run(
         runner.run(
             messages=message,
-            session_id="asdfghjkl",
+            session_id=uuid4().hex,
         )
     )
     print(completion)

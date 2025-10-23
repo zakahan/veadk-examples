@@ -1,6 +1,10 @@
 import os
 
-os.environ["LOGGING_LEVEL"] = "ERROR"  # noqa
+from google.adk.agents import RunConfig
+from google.adk.agents.run_config import StreamingMode
+from google.genai import types
+
+os.environ["LOGGING_LEVEL"] = "ERROR"
 import asyncio
 import uuid
 from veadk import Agent, Runner
@@ -16,7 +20,6 @@ top_p = 0.9  # 模型top_p参数，0~1之间，控制候选词范围（模型会
 thinking_type = "disabled"  # 模型思考类型，关闭模型思考 参考文档：https://www.volcengine.com/docs/82379/1330626
 max_tokens = 2048  # 模型最大输出token数
 
-os.environ["MODEL_AGENT_MAX_LLM_CALLS"] = str(max_llm_calls)
 agent = Agent(
     name="chat_agent",  # Agent名称
     description="ChatAgent",  # Agent描述
@@ -42,12 +45,33 @@ runner = Runner(
 )
 
 
-if __name__ == "__main__":
-    completion = asyncio.run(
-        runner.run(
-            messages="今天吃什么",
-            session_id=str(uuid.uuid4()),
-            stream=stream,
-        )
+async def main():
+    # 注意： 由于本脚本需要用到流式输出，而前几个脚本里的run方法是不支持流式的，这里必须采用run_async并采用如下的方式处理
+    session_id = uuid.uuid4().hex
+    await short_term_memory.session_service.create_session(
+        app_name=runner.app_name, user_id=runner.user_id, session_id=session_id
     )
-    # print(completion)
+    run_config = RunConfig(
+        streaming_mode=StreamingMode.NONE if not stream else StreamingMode.SSE,
+        max_llm_calls=max_llm_calls,
+    )
+    message = types.Content(
+        role="user",
+        parts=[
+            types.Part(text="我已经消化完占卜家序列9魔药了，请问序列8的魔药去哪里搞？")
+        ],
+    )
+
+    async for event in runner.run_async(
+        user_id=runner.user_id,
+        session_id=session_id,
+        new_message=message,
+        run_config=run_config,
+    ):
+        if event.partial:
+            print(event.content.parts[0].text, end="", flush=True)
+        # print(event)
+
+
+if __name__ == "__main__":
+    completion = asyncio.run(main())

@@ -4,23 +4,23 @@
 
 > 注1:可用版本指的是**该example在当前版本范围内测试过且能够跑通**，其他版本没有测试过故无法保证，说不定也能跑。
 > 
-> 注2:顺序并不表示难度
+> 注2:顺序并不表示难度或复杂度
 
-| id | 文件名                              |               描述               | 可用版本* |
-|:---|:---------------------------------|:------------------------------:|:---:|
-| 01 | a_tiny_agent_usage.py            |          超简洁的Agent用法           | 0.2.5 |
-| 02 | b_detail_agent_usage.py          |         详细描述的单Agent用法          | 0.2.5 |
-| 03 | c_agent_with_tools.py            |         带工具调用的Agent用法          | 0.2.5 |
-| 04 | d_agent_with_builtin_tools.py    |          使用内置工具的Agent          | 0.2.5 |
-| 05 | e_agent_with_mcp_tools.py        |         使用mcp工具的Agent          | 0.2.5 |
-| 06 | f_multi_turn_dialogue.py         |          带多轮对话的Agent           | 0.2.5 |
-| 07 | g_multiple_agents.py             |             多Agent             | 0.2.5 |
-| 08 | h_multi_modal.py                 |     多模态Agent(输入为图片&输出为图片)      | 0.2.5|
-| 09 | i_chat_with_llm_parameter.py     | 自定义设置llm参数（stream、temperature） | 0.2.5 |
-| 10 | j_agent_with_long_term_memory.py |          带长期记忆的Agent           | 0.2.5 |
-| 11 | k_agent_with_kb.py               |           带知识库的Agent           | 0.2.5 |
-| 12 | l_viking_long_term_memory.py     |      带长期记忆的Agent（viking版）      | 0.2.5 |
-| 13 | m_viking_kb.py                   |      带知识库的Agent（viking版）       | 0.2.5 |
+| id | 文件名                              |               描述               | 可用版本*  |
+|:---|:---------------------------------|:------------------------------:|:------:|
+| 01 | a_tiny_agent_usage.py            |          超简洁的Agent用法           | 0.2.12 |
+| 02 | b_detail_agent_usage.py          |         详细描述的单Agent用法          | 0.2.12  |
+| 03 | c_agent_with_tools.py            |         带工具调用的Agent用法          | 0.2.12  |
+| 04 | d_agent_with_builtin_tools.py    |          使用内置工具的Agent          | 0.2.12  |
+| 05 | e_agent_with_mcp_tools.py        |         使用mcp工具的Agent          | 0.2.12  |
+| 06 | f_multi_turn_dialogue.py         |          带多轮对话的Agent           | 0.2.12  |
+| 07 | g_multiple_agents.py             |             多Agent             | 0.2.12  |
+| 08 | h_multi_modal.py                 |     多模态Agent(输入为图片&输出为图片)      | 0.2.12  |
+| 09 | i_chat_with_llm_parameter.py     | 自定义设置llm参数（stream、temperature） | 0.2.12  |
+| 10 | j_agent_with_long_term_memory.py |          带长期记忆的Agent           | 0.2.12  |
+| 11 | k_agent_with_kb.py               |           带知识库的Agent           | 0.2.12  |
+| 12 | l_viking_long_term_memory.py     |      带长期记忆的Agent（viking版）      | 0.2.12  |
+| 13 | m_viking_kb.py                   |      带知识库的Agent（viking版）       | 0.2.12  |
 
 ## 详细介绍
 

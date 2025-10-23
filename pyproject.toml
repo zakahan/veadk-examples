@@ -5,25 +5,18 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "fastmcp>=2.12.5",
+    "mcp-server-time>=2025.9.25",
     "opensearch-py>=2.8.0",
-    "tos>=2.8.5",
-    "fastmcp>=2.12.0",
-    "mcp-server-time>=2025.8.4",
-    "litellm<=1.75", # 高版本有个loggingworker的bug，先降一下
-    "volcengine>=1.0.198",
-    "fastapi>=0.116.1",
-    "uvicorn[standard]>=0.35.0",
-    "veadk-python",
-    "typer>=0.17.4", # 用于veadk命令行工具
     "deepeval>=3.4.8",
     "prometheus-client>=0.22.1",
+    "litellm<=1.75", # 高版本有个loggingworker的bug，先降一下
+    "tos>=2.8.7",
+    "veadk-python>=0.2.12",
+    "volcengine>=1.0.203",
 ]
 
 [dependency-groups]
 dev = [
     "pre-commit>=4.3.0",
 ]
-
-[tool.uv.sources]
-veadk-python = { git = "https://github.com/zakahan/veadk-python.git", rev = "fix/platform" }
-

@@ -1,4 +1,5 @@
 import os
+from uuid import uuid4
 
 os.environ["LOGGING_LEVEL"] = "ERROR"  # noqa
 import asyncio
@@ -30,8 +31,12 @@ APP_NAME = "viking_demo"
 kb = KnowledgeBase(
     backend="viking",  # 这里设置为viking
 )
+res = kb.collection_status()
 
-kb.add(mock_data, app_name=APP_NAME)
+if not res["existed"]:
+    kb.create_collection()  # viking需要专门create一下
+
+kb.add_from_text(mock_data)
 
 
 def calculate_date_difference(date1: str, date2: str) -> int:
@@ -76,7 +81,7 @@ if __name__ == "__main__":
     completion = asyncio.run(
         runner.run(
             messages="弗洛伊德和阿德勒差了多少岁，多少天？",
-            session_id="123",
+            session_id=uuid4().hex,
         )
     )
     print(completion)

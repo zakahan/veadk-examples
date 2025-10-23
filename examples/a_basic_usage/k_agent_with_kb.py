@@ -1,6 +1,5 @@
-import os
+from uuid import uuid4
 
-os.environ["LOGGING_LEVEL"] = "ERROR"  # noqa
 import asyncio
 from datetime import datetime
 
@@ -20,9 +19,10 @@ APP_NAME = "app_name"
 # 知识库同样选local 先跑
 kb = KnowledgeBase(
     backend="local",
+    index="kb_test",  # 有两个可选参数`index`和`app_name`二选一，如果选了app_name，要和agent对应的app_name一致
 )
 
-kb.add(mock_data, app_name=APP_NAME)
+kb.add_from_text(text=mock_data)
 
 
 def calculate_date_difference(date1: str, date2: str) -> int:
@@ -52,6 +52,9 @@ agent = Agent(
     instruction="你是一个优秀的助手，你可以和用户进行对话。",
     knowledgebase=kb,
     tools=[calculate_date_difference],
+    model_extra_config={
+        "extra_body": {"thinking": {"type": "disable"}},
+    },
 )
 
 
@@ -65,7 +68,7 @@ if __name__ == "__main__":
     completion = asyncio.run(
         runner.run(
             messages="弗洛伊德和阿德勒差了多少岁，多少天？",
-            session_id="123",
+            session_id=uuid4().hex,
         )
     )
     print(completion)

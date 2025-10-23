@@ -30,7 +30,7 @@ if __name__ == "__main__":
     completion = asyncio.run(
         runner.run(
             messages="今天吃什么",
-            session_id=str(uuid.uuid4()),  # 这个值用来唯一标识本段短期记忆
+            session_id=uuid.uuid4().hex,  # 这个值用来唯一标识本段短期记忆
         )
     )
     print(completion)

@@ -1,5 +1,7 @@
 import asyncio
 import os
+from uuid import uuid4
+
 from veadk import Agent, Runner
 from veadk.tools.builtin_tools.web_search import web_search
 
@@ -25,7 +27,7 @@ if __name__ == "__main__":
     completion = asyncio.run(
         runner.run(
             messages="介绍一下阿德勒心理学",
-            session_id="asdfghjkl",
+            session_id=uuid4().hex,
         )
     )
     print(completion)

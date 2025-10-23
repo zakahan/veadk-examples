@@ -23,9 +23,10 @@ USER_ID = "user"
 # 这里事先准备好一个knowledgebase，用于agent知识
 kb = KnowledgeBase(
     backend="local",
+    index="local_kb",
 )
 
-kb.add(data=mock_data, app_name=APP_NAME)
+kb.add_from_text(text=mock_data)
 
 root_agent = Agent(
     name="chat_agent",

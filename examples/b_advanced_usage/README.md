@@ -8,14 +8,13 @@
 > 
 > 注2:顺序并不表示难度
 
-| id | 目录名称                 |               描述               | 可用版本* |
-|:---|:---------------------|:------------------------------:|:---:|
-| 01 | a_veadk_web          |         如何使用veadk-web          | 0.2.5 |
-| 02 | b_a2a_demo           |           a2a协议的简单使用           | 0.2.5 |
-| 03 | c_observability      |         agent应用与可观测平台          | 0.2.5 |
-| 04 | d_vefaas_deploy      |        在vefaas上部署agent         | 0.2.5 |
-| 05 | e_evaluate           |            agent评估             | 0.2.5 |
-| 06 | f_prompt_pilot       |        agent的prompt 优化         | 0.2.5 |
+| id | 目录名称                 |               描述               | 可用版本*  |
+|:---|:---------------------|:------------------------------:|:------:|
+| 01 | a_veadk_web          |         如何使用veadk-web          | 0.2.12 |
+| 02 | b_a2a_demo           |           a2a协议的简单使用           | 0.2.12 |
+| 03 | c_observability      |         agent应用与可观测平台          | 0.2.12 |
+| 04 | d_vefaas_deploy      |        在vefaas上部署agent         | 0.2.12 |
+| 05 | e_evaluate           |            agent评估             | 0.2.5  |
 
 ## 详细介绍
 
@@ -42,14 +41,14 @@ veadk web --host 0.0.0.0
 
 - 启动服务端
 ```bash
-cd b_advanced_usage/b_a2a_demo 
+cd examples/b_advanced_usage/b_a2a_demo 
 
 python server/server.py
 ```
 
 - 启动客户端
 ```bash
-cd b_advanced_usage/b_a2a_demo 
+cd examples/b_advanced_usage/b_a2a_demo 
 
 python client.py
 ```
@@ -74,7 +73,7 @@ http://localhost:8022/.well-known/agent-card.json
 
 对于a2a协议，你可以大致理解为：我们肯定有需求，需要将一些agent部署到某个平台，在本地通过另一些agent调用，实现两个agent之间的沟通，那么这个沟通的协议是什么？a2a。
 
-当然你可以使用其他的协议来完成这个事情，比如mcp协议（这里埋个伏笔，因为veadk后面也做了），但a2a是一个更推荐的选择。
+当然你可以使用其他的协议来完成这个事情，但a2a是一个更推荐的选择。
 
 
 
@@ -248,7 +247,7 @@ python examples/b_advanced_usage/c_observability/cozeloop_tracer.py
 
 5. 为授权ServerlessApplicationRole角色
 
-目前`veadk==0.2.7`，这一步无法自动完成，需要手动执行，后续可能会优化
+目前`veadk==0.2.7`，这一步无法自动完成，需要手动执行，后续可能会优化（这里我没有新账号，所以现在没法再测试了，如果感兴趣可以试试这一步有没有优化）
 
 首先，随便选择一个vefaas的应用模板，比如[这个](https://console.volcengine.com/vefaas/region:vefaas+cn-beijing/application/create?templateId=67f7b4678af5a6000850556c)。
 
@@ -270,7 +269,7 @@ cd examples/b_advanced_usage/d_vefaas_deploy
 veadk init 
 # 接下来一路回车即可，(如果前面创建了apig，那么在第二次里输入apig名称）直到让你选mode1还是mode2
 
-# 选择mode1
+# 选择mode1吧， A2A/MCP Server
 ```
 
 ![image-20250911164550876](./images/image-20250911164550876.png)
@@ -294,10 +293,6 @@ veadk init
 
 另外，如果你需要在Vefaas部署的agent上记录Trace，那么也要在config.yaml里记录`observability`部分（这个在03节说过了，不多说了）。其次要开启tracer。
 
-4. vefaas 鉴权关闭
-
-vefaas_enable_key_auth: false 关闭鉴权，方便我们演示使用。（注意，这个在0.2.7是默认开启的，请拉取最新的分支）
-
 总之，要配置这些
 
 ```yaml
@@ -308,7 +303,6 @@ model:
     api_base: https://ark.cn-beijing.volces.com/api/v3/
     api_key: 
 volcengine:
-  # [optional] for Viking DB and `web_search` tool
   access_key:
   secret_key:
 
@@ -324,10 +318,7 @@ veadk:     # (可选，开启tracer用的)
     apmplus: false
     cozeloop: true
     tls: false
-    
-vefaas_enable_key_auth: false
 ```
-
 
 
 4. requirements.txt
@@ -339,7 +330,7 @@ veadk_cloud_proj/src/requirements.txt
 不多说了，建议直接至少配置这些,不然可能跑不起来。
 
 ```ini
-veadk-python==0.2.6
+veadk-python
 fastapi
 uvicorn[standard]
 ```
@@ -348,12 +339,15 @@ uvicorn[standard]
 
 5. 运行代码
 
-注意1：这对于win平台用户，这里有个事情需要注意，部署之前必须要保证所有的换行符都是LF的，而不是CRLF的，不然vefaas上会出错的
+注意1：这对于win平台用户，这里有个事情需要注意，部署之前必须要保证所有的换行符都是LF的，而不是CRLF的，不然vefaas上会出错的(这个非常关键)
 
 ```bash
 # 在之前的基础上，（当前路径为d_vefaas_deploy）
 cd veadk_cloud_proj
-python deploy.py 
+# for mac( 这里配置环境变量是取消auth环节，方便测试看的，不设置需要auth权限才能访问
+VEFAAS_ENABLE_KEY_AUTH=false python deploy.py
+# for win powershell
+$env:VEFAAS_ENABLE_KEY_AUTH = "false"; python deploy.py
 ```
 
 ![image-20250911164907633](./images/image-20250911164907633.png)
@@ -366,8 +360,15 @@ OK，整个部署流程完毕。（中间可能出现各种意外错误，如果
 
 如果你走完整个流程可以在这里看到一个URL，这就是你应用所在的URL。
 
+>  VeFaaS application vhanzhi-chat with ID b0663242fcf5 deployed on https://xxxxxx.com
+copy这个url，然后将你的url加入到代码第[README.md](README.md)九行中，运行valid_remote.py
 
-
+```bash
+# 还是在原本的terminal中
+cd ..
+python verification_remote.py --url "your-url"
+```
+跑成功就可以了，说明已经部署成功。
 
 
 
@@ -385,12 +386,3 @@ model:
 ```
 
 演示了如何通过deepeval对agent进行评测
-
-
-
-
-
-### 06. f_prompt_pilot
-
-
-

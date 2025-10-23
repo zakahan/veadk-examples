@@ -12,7 +12,7 @@
 **声明**：
 1. 本仓库为非官方使用教程，如有更新或其他原因导致本仓库某代码失效请以官方文档和官方仓库为准。
 2. 本人日常摆烂人格，经常写着写着就查无此人了，所以说不准哪天就不更新了，不要太对我抱有期望，提前向各位道歉。
-3. 本人不是很会写文档，而且习惯注释代替思考，文档充当草稿，所以可能有一大堆没啥用的注释以及比较乱的文档内容，请见谅，遇到不清楚不合理的描述内容之类的请提一下issue说说，我会改的。
+3. 本人不是很会写文档，而且习惯`注释直通大脑，文档充当草稿`，所以可能有一大堆没啥用的注释以及比较乱的文档内容，请见谅，遇到不清楚不合理的描述内容之类的请提一下issue说说，我会改的。
 
 - [veadk-python](https://github.com/volcengine/veadk-python)
 - [veadk官方文档](https://volcengine.github.io/veadk-python)
@@ -61,8 +61,12 @@ cp config.yaml.example config.yaml
 
 - 章节a: `a_basic_usage`: 基础使用案例，包括单/多个Agent的运行，带工具(mcp)、多轮对话，流式输出，多模态、长期记忆和知识库等等，如果你仅仅是想要娱乐的方式来“玩”Agent，那么这些就足够了。
 - 章节b: `b_advanced_usage`: 进阶使用案例，包括veadk-web的使用，a2a协议使用、apmplus/cozeloop上的可观测监控，vefaas上的部署、Agent评估，prompt_pilot实现prompt优化等等。
-- 章节c: `c_independent_development`: 如何对veadk进行自定义的扩展，比如新增知识库，扩展长期记忆，实现非openai api规范的模型调用等
+- 章节c: `c_tricks`： 技巧性用法，一些对veadk做复杂处理需要的技巧，比如如何让tool调用不再是无状态，而是能识别用户身份等，或者是一些自定义的用法，这些可能在google-adk文档中有说明，会补充过来。
 - 章节d: `d_demohouse`: 一些很具体的demo，这些demo也不会很复杂，往往是一个个的案例。
+
+### 阅读顺序
+
+进入您想查看的章节，然后先阅读readme，再阅读对应的代码，代码+注释+readme文档=总体使用教程。
 
 ### 项目目标
 

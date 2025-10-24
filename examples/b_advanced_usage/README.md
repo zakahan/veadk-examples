@@ -360,7 +360,7 @@ OK，整个部署流程完毕。（中间可能出现各种意外错误，如果
 
 如果你走完整个流程可以在这里看到一个URL，这就是你应用所在的URL。
 
->  VeFaaS application vhanzhi-chat with ID b0663242fcf5 deployed on https://xxxxxx.com
+>  VeFaaS application xxxxxxx with ID b0xffffffff deployed on https://xxxxxx.com
 copy这个url，然后将你的url加入到代码第[README.md](README.md)九行中，运行valid_remote.py
 
 ```bash

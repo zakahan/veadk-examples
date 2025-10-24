@@ -65,7 +65,7 @@ else:
 
 if __name__ == "__main__":
     # ---------------------------------
-    message = """小张（xiaozhang@gmail.com）在雅典，给他发个email，email内容是`在吗？
+    message = """小张（xiaozhang@gmail.com），给他发个email，email内容是`在吗？`
         最后再查一下自己的邮箱有没有新的邮件。
         """
     completion = asyncio.run(

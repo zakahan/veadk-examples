@@ -7,19 +7,19 @@
 
 那你是问对人了
 
-来都来了、都是哥/姐们、给个面子，耽误你两分钟看一看`veadk-python`的使用教程好吗（不保证是保姆级）：
+来都来了、都是哥/姐们、给个面子，耽误你两分钟看一看`veadk-python`的使用教程好吗？：
 
 **声明**：
-1. 本仓库为非官方使用教程，如有更新或其他原因导致本仓库某代码失效请以官方文档和官方仓库为准。
-2. 本人日常摆烂人格，经常写着写着就查无此人了，所以说不准哪天就不更新了，不要太对我抱有期望，提前向各位道歉。
-3. 本人不是很会写文档，而且习惯`注释直通大脑，文档充当草稿`，所以可能有一大堆没啥用的注释以及比较乱的文档内容，请见谅，遇到不清楚不合理的描述内容之类的请提一下issue说说，我会改的。
+1. 本仓库为**非官方**使用教程，如有更新或其他原因导致本仓库某代码失效请以官方文档和官方仓库为准。
+2. 本人日常摆烂人格，经常写着写着就查无此人了，所以也许某天就不更新了，提前向各位道歉orz。
+3. 本人不是很会写文档，而风格属于`注释直通大脑，文档充当草稿`，所以可能有一大堆没啥用（但我认为很有用）的注释以及比较乱的文档内容，请见谅，遇到不清楚不合理的描述内容之类的请提一下issue说说，我会改的。
 
 - [veadk-python](https://github.com/volcengine/veadk-python)
 - [veadk官方文档](https://volcengine.github.io/veadk-python)
 
 ### 写在开头
 
-1. 本项目全程使用uv进行环境管理，所以建议你也使用uv来。这里是uv的配置方式:[how-to-install-uv](github.com/volcengine/veadk-python?tab=readme-ov-file)
+1. 本项目全程使用uv进行环境管理，而且非常好用，所以建议你也使用uv来。这里是uv的配置方式:[how-to-install-uv](github.com/volcengine/veadk-python?tab=readme-ov-file)
 2. veadk所有key的配置都依赖`config.yaml`（其实也可以用环境变量），所以希望你牢牢记得，别把这东西泄露出去。
 3. 代码运行的目录为项目根目录，因为`config.yaml`在这里（所以说如果你想在其他地方运行，那么里面要有`config.yaml`或配置的环境变量）
 
@@ -40,9 +40,9 @@ cd veadk-examples
 uv sync
 
 # 激活环境
-# mac or linux
+# for mac or linux
 source .venv/bin/activate
-# windows
+# for windows
 .\.venv\Scripts\activate
 ```
 
@@ -61,12 +61,12 @@ cp config.yaml.example config.yaml
 
 - 章节a: `a_basic_usage`: 基础使用案例，包括单/多个Agent的运行，带工具(mcp)、多轮对话，流式输出，多模态、长期记忆和知识库等等，如果你仅仅是想要娱乐的方式来“玩”Agent，那么这些就足够了。
 - 章节b: `b_advanced_usage`: 进阶使用案例，包括veadk-web的使用，a2a协议使用、apmplus/cozeloop上的可观测监控，vefaas上的部署、Agent评估，prompt_pilot实现prompt优化等等。
-- 章节c: `c_tricks`： 技巧性用法，一些对veadk做复杂处理需要的技巧，比如如何让tool调用不再是无状态，而是能识别用户身份等，或者是一些自定义的用法，这些可能在google-adk文档中有说明，会补充过来。
-- 章节d: `d_demohouse`: 一些很具体的demo，这些demo也不会很复杂，往往是一个个的案例。
+- 章节c: `c_tricks`（还没写完）： 技巧性用法，一些对veadk做复杂处理需要的技巧，比如如何让模型调用不再是无状态，而是能识别用户身份等，或者是一些自定义的用法，这些可能在google-adk文档中有说明，会补充过来。
+- 章节d: `d_demohouse`（目前先鸽了）: 一些很具体的demo，这些demo也不会很复杂，往往是一个个的案例。
 
 ### 阅读顺序
 
-进入您想查看的章节，然后先阅读readme，再阅读对应的代码，代码+注释+readme文档=总体使用教程。
+进入您想查看的章节a/b/c/d，然后先阅读readme，再阅读对应的代码，代码+注释+readme文档=总体使用教程。
 
 ### 项目目标
 

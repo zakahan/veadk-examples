@@ -403,4 +403,4 @@ LONG_TERM_MEMORY_BACKEND=opensearch veadk web
 
 ```
 
-![图片](images/Snipaste_2025-10-31_17-25-28.png)
+![图片](images/image_20251031172528.png)

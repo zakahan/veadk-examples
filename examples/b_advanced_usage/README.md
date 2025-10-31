@@ -391,15 +391,12 @@ model:
 ### f_use_long_term_memory_in_veadk_web
 
 本演示demo采用了local模式的长期记忆（方便复现）
-如果你选用了其他类型（比如opensearch）
-需要设置环境变量
+
 
 ```bash
 cd examples/b_advanced_usage/f_use_long_term_memory_in_veadk_web/
-# local模式
 veadk web
-# opensearch等
-LONG_TERM_MEMORY_BACKEND=opensearch veadk web
+
 
 ```
 

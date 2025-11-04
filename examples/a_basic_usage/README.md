@@ -6,21 +6,23 @@
 > 
 > 注2:顺序并不表示难度或复杂度
 
-| id | 文件名                              |               描述               | 可用版本*  |
-|:---|:---------------------------------|:------------------------------:|:------:|
-| 01 | a_tiny_agent_usage.py            |          超简洁的Agent用法           | 0.2.12 |
-| 02 | b_detail_agent_usage.py          |         详细描述的单Agent用法          | 0.2.12  |
-| 03 | c_agent_with_tools.py            |         带工具调用的Agent用法          | 0.2.12  |
-| 04 | d_agent_with_builtin_tools.py    |          使用内置工具的Agent          | 0.2.12  |
-| 05 | e_agent_with_mcp_tools.py        |         使用mcp工具的Agent          | 0.2.12  |
-| 06 | f_multi_turn_dialogue.py         |          带多轮对话的Agent           | 0.2.12  |
-| 07 | g_multiple_agents.py             |             多Agent             | 0.2.12  |
-| 08 | h_multi_modal.py                 |     多模态Agent(输入为图片&输出为图片)      | 0.2.12  |
-| 09 | i_chat_with_llm_parameter.py     | 自定义设置llm参数（stream、temperature） | 0.2.12  |
-| 10 | j_agent_with_long_term_memory.py |          带长期记忆的Agent           | 0.2.12  |
-| 11 | k_agent_with_kb.py               |           带知识库的Agent           | 0.2.12  |
-| 12 | l_viking_long_term_memory.py     |      带长期记忆的Agent（viking版）      | 0.2.12  |
-| 13 | m_viking_kb.py                   |      带知识库的Agent（viking版）       | 0.2.12  |
+| id | 文件名                               |               描述               | 可用版本*  |
+|:---|:----------------------------------|:------------------------------:|:------:|
+| 01 | a_tiny_agent_usage.py             |          超简洁的Agent用法           | 0.2.12 |
+| 02 | b_detail_agent_usage.py           |         详细描述的单Agent用法          | 0.2.12  |
+| 03 | c_local_short_memory.py           |         详细描述的单Agent用法          | 0.2.12  |
+| 04 | d_persistent_short_term_memory.py |         详细描述的单Agent用法          | 0.2.12  |
+| 05 | e_agent_with_tools.py             |         带工具调用的Agent用法          | 0.2.12  |
+| 06 | f_agent_with_builtin_tools.py     |          使用内置工具的Agent          | 0.2.12  |
+| 07 | g_agent_with_mcp_tools.py         |         使用mcp工具的Agent          | 0.2.12  |
+| 08 | h_multi_turn_dialogue.py          |          带多轮对话的Agent           | 0.2.12  |
+| 09 | i_multiple_agents.py              |             多Agent             | 0.2.12  |
+| 10 | j_multi_modal.py                  |     多模态Agent(输入为图片&输出为图片)      | 0.2.12  |
+| 11 | k_chat_with_llm_parameter.py      | 自定义设置llm参数（stream、temperature） | 0.2.12  |
+| 12 | l_agent_with_long_term_memory.py  |          带长期记忆的Agent           | 0.2.12  |
+| 13 | m_agent_with_kb.py                |           带知识库的Agent           | 0.2.12  |
+| 14 | n_viking_long_term_memory.py      |      带长期记忆的Agent（viking版）      | 0.2.12  |
+| 15 | o_viking_kb.py                    |      带知识库的Agent（viking版）       | 0.2.12  |
 
 ## 详细介绍
 
@@ -40,13 +42,17 @@ runner = Runner(agent)
 该部分介绍了Agent的详细用法，说明了如何配置Agent相关的一些基础参数，包括api-key、api-base以及系统提示词等（instruction）
 
 
-### 03. c_agent_with_tools.py
+### 03. c_local_short_memory.py
+
+### 04. d_persistent_short_term_memory.py
+
+### 05. e_agent_with_tools.py
 
 作为一个agent，怎么能没有可以调用的工具呢？
 这部分介绍了如何使用agent调用工具（当然这部分仅仅展示了如何调用function工具，实际上agent还支持mcp工具类型）
 
 
-### 04. d_agent_with_builtin_tools.py
+### 06. f_agent_with_builtin_tools.py
 
 - [关于内置工具的文档](https://volcengine.github.io/veadk-python/tool.html#%E5%86%85%E7%BD%AE%E5%B7%A5%E5%85%B7)
 
@@ -79,7 +85,7 @@ volcengine:
 运行本脚本可以发现日志里存在function-call的内容，说明成功调用了web-search工具。
 ![web_search](images/img-04-b.png)
 
-### 05. e_agent_with_mcp_tools.py
+### 07. g_agent_with_mcp_tools.py
 
 这是一个使用mcp工具的例子。
 tools(client)部分依靠mcp库和google-adk的mcp-toolset实现。
@@ -89,7 +95,7 @@ uv add mcp_server_time
 ```
 
 
-### 06. f_multi_turn_dialogue.py
+### 08. h_multi_turn_dialogue.py
 
 这是一个多轮对话的案例，其实对veadk做多轮对话并不复杂。
 实现veadk多轮对话的关键在于ShortTermMemory。
@@ -102,15 +108,15 @@ logging:
   level: ERROR
 ```
 
-### 07. g_multiple_agents.py
+### 09. i_multiple_agents.py
 
 多个agent调用运行，并且演示了workflow agent的用法
 
-### 08. h_multi_modal.py
+### 10. j_multi_modal.py
 
 多模态agent的演示，包括输入和输出为图片的agent的演示。
 
-### 09. i_chat_with_llm_parameter.py
+### 11. k_chat_with_llm_parameter.py
 
 对于llm进行精细控制的时候使用
 
@@ -128,7 +134,7 @@ logging:
 有关这个参数看[文档](https://www.volcengine.com/docs/82379/1330626)
 
 
-### 09. j_agent_with_long_term_memory.py
+### 12. l_agent_with_long_term_memory.py
 
 长期记忆agent演示
 ```python
@@ -148,10 +154,10 @@ agent = Agent(
 注意⚠️
 `ltm.add_session_to_memory`是一个异步函数。
 
-### 10. k_agent_with_kb.py
+### 13. m_agent_with_kb.py
 ...
 
-### 11. l_viking_long_term_memory.py
+### 14. n_viking_long_term_memory.py
 
 本脚本演示如何使用viking记忆库+veadk实现带持久化长期记忆的Agent
 
@@ -189,7 +195,7 @@ database:
 - **非首次记忆添加延迟约20～30秒**：由于viking记忆库内置了memory summary机制（基于llm），会有一定的异步延迟（大约20～30秒），导致你添加的记忆是无法立刻被搜索到的。（但对于长期记忆场景而言，这个设计个人认为是能接受的）
 
 
-### 12. m_viking_kb.py
+### 15. o_viking_kb.py
 
 在config.yaml的配置上，需要添加
 ```yaml

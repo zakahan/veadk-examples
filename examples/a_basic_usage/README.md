@@ -6,23 +6,23 @@
 > 
 > 注2:顺序并不表示难度或复杂度
 
-| id | 文件名                               |               描述               | 可用版本*  |
-|:---|:----------------------------------|:------------------------------:|:------:|
-| 01 | a_tiny_agent_usage.py             |          超简洁的Agent用法           | 0.2.12 |
-| 02 | b_detail_agent_usage.py           |         详细描述的单Agent用法          | 0.2.12  |
-| 03 | c_local_short_memory.py           |          loca模式的短期记忆           | 0.2.12  |
-| 04 | d_persistent_short_term_memory.py |            持久化的短期记忆            | 0.2.12  |
-| 05 | e_agent_with_tools.py             |         带工具调用的Agent用法          | 0.2.12  |
-| 06 | f_agent_with_builtin_tools.py     |          使用内置工具的Agent          | 0.2.12  |
-| 07 | g_agent_with_mcp_tools.py         |         使用mcp工具的Agent          | 0.2.12  |
-| 08 | h_multi_turn_dialogue.py          |          带多轮对话的Agent           | 0.2.12  |
-| 09 | i_multiple_agents.py              |             多Agent             | 0.2.12  |
-| 10 | j_multi_modal.py                  |     多模态Agent(输入为图片&输出为图片)      | 0.2.12  |
-| 11 | k_chat_with_llm_parameter.py      | 自定义设置llm参数（stream、temperature） | 0.2.12  |
-| 12 | l_agent_with_long_term_memory.py  |          带长期记忆的Agent           | 0.2.12  |
-| 13 | m_agent_with_kb.py                |           带知识库的Agent           | 0.2.12  |
-| 14 | n_viking_long_term_memory.py      |      带长期记忆的Agent（viking版）      | 0.2.12  |
-| 15 | o_viking_kb.py                    |      带知识库的Agent（viking版）       | 0.2.12  |
+| id | 文件名                               |               描述               |     可用版本*     |
+|:---|:----------------------------------|:------------------------------:|:-------------:|
+| 01 | a_tiny_agent_usage.py             |          超简洁的Agent用法           | 0.2.12~0.2.18 |
+| 02 | b_detail_agent_usage.py           |         详细描述的单Agent用法          |    0.2.12~0.2.18    |
+| 03 | c_local_short_memory.py           |          loca模式的短期记忆           |    0.2.12~0.2.18     |
+| 04 | d_persistent_short_term_memory.py |            持久化的短期记忆            |    0.2.12~0.2.18     |
+| 05 | e_agent_with_tools.py             |         带工具调用的Agent用法          |    0.2.12~0.2.18     |
+| 06 | f_agent_with_builtin_tools.py     |          使用内置工具的Agent          |    0.2.12~0.2.18     |
+| 07 | g_agent_with_mcp_tools.py         |         使用mcp工具的Agent          |    0.2.12~0.2.18     |
+| 08 | h_multi_turn_dialogue.py          |          带多轮对话的Agent           |    0.2.12~0.2.18     |
+| 09 | i_multiple_agents.py              |             多Agent             |    0.2.12~0.2.18     |
+| 10 | j_multi_modal.py                  |     多模态Agent(输入为图片&输出为图片)      |    0.2.12~0.2.18     |
+| 11 | k_chat_with_llm_parameter.py      | 自定义设置llm参数（stream、temperature） |    0.2.12~0.2.18     |
+| 12 | l_agent_with_long_term_memory.py  |          带长期记忆的Agent           |    0.2.12~0.2.18     |
+| 13 | m_agent_with_kb.py                |           带知识库的Agent           |    0.2.12~0.2.18     |
+| 14 | n_viking_long_term_memory.py      |      带长期记忆的Agent（viking版）      |    0.2.12~0.2.18     |
+| 15 | o_viking_kb.py                    |      带知识库的Agent（viking版）       |    0.2.12~0.2.18     |
 
 ## 详细介绍
 

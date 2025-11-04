@@ -13,9 +13,28 @@ agent = Agent()
 short_term_memory = ShortTermMemory(
     backend="sqlite",
     local_database_path="./d_persistent_short_term_memory.db",  # sqlite 需要指定数据库路径
-    # 如果是 mysql 或 postgresql，需要指定 db_url
-    # db_url="mysql://user:password@localhost:3306/db_name"
+    # 如果是 mysql 或 postgresql: 1. backend切换到mysql或者postgresql，2. 直接指定db_url
 )  # 可持久化的 short_term_memory，指定 sqlite 后端，对
+
+# # mysql
+# # 方案1: 直接指定db_url
+# short_term_memory = ShortTermMemory(
+#     db_url="mysql://username:password@host:port/database"     # The `db_url` is set, ignore `backend` option.
+# )
+#
+# # 方案2: 指定backend 并在config.yaml里做配置
+# ```yaml
+# database:
+#   mysql:
+#     host: x.x.x.x
+#     user: username
+#     password: password
+#     database: database_name
+#     charset: utf8mb4
+# ```
+# short_term_memory = ShortTermMemory(
+#     backend="mysql",
+# )
 
 runner = Runner(
     agent=agent, short_term_memory=short_term_memory, app_name=app_name, user_id=user_id

@@ -10,8 +10,8 @@
 |:---|:----------------------------------|:------------------------------:|:------:|
 | 01 | a_tiny_agent_usage.py             |          超简洁的Agent用法           | 0.2.12 |
 | 02 | b_detail_agent_usage.py           |         详细描述的单Agent用法          | 0.2.12  |
-| 03 | c_local_short_memory.py           |         详细描述的单Agent用法          | 0.2.12  |
-| 04 | d_persistent_short_term_memory.py |         详细描述的单Agent用法          | 0.2.12  |
+| 03 | c_local_short_memory.py           |          loca模式的短期记忆           | 0.2.12  |
+| 04 | d_persistent_short_term_memory.py |            持久化的短期记忆            | 0.2.12  |
 | 05 | e_agent_with_tools.py             |         带工具调用的Agent用法          | 0.2.12  |
 | 06 | f_agent_with_builtin_tools.py     |          使用内置工具的Agent          | 0.2.12  |
 | 07 | g_agent_with_mcp_tools.py         |         使用mcp工具的Agent          | 0.2.12  |
@@ -44,7 +44,15 @@ runner = Runner(agent)
 
 ### 03. c_local_short_memory.py
 
+这部分展示了非持久化的（内存型）短期记忆的用法和特点，可以和d_persistent_short_term_memory.py进行对比。
+（注意，代码里的1.x和2.x，并不是两轮对话，你可以理解为，第一轮对话结束，关闭了runner，再重启后，是什么样子。
+
 ### 04. d_persistent_short_term_memory.py
+
+这部分展示了持久化的短期记忆的用法和特点，可以和d_persistent_short_term_memory.py进行对比。
+（注意，代码里的1.x和2.x，并不是两轮对话，你可以理解为，第一轮对话结束，关闭了runner，再重启后，是什么样子。
+另外方便起见，这里没有展示mysql和pg的db_url链接方式，如果你需要。可以查看这部分源代码
+https://github.com/volcengine/veadk-python/blob/main/veadk/memory/short_term_memory_backends/mysql_backend.py
 
 ### 05. e_agent_with_tools.py
 

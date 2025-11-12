@@ -30,6 +30,7 @@ agent = Agent(
     description="你是一个优秀的助手，你可以和用户进行对话。",
     instruction=AGENT_INSTRUCTION,
     long_term_memory=ltm,
+    enable_responses=True,
 )
 
 runner = Runner(

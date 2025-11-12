@@ -33,6 +33,7 @@ agent = Agent(
         "extra_body": {"thinking": {"type": thinking_type}},
         "max_tokens": max_tokens,
     },
+    enable_responses=True,
 )
 
 short_term_memory = ShortTermMemory()

@@ -18,6 +18,7 @@ agent = Agent(
     name="chat_agent",
     description="你是一个优秀的助手，你可以和用户进行对话。",
     instruction="不管用户说什么，你在回答的开头都要带上`你好`，然后再回答用户的问题。",
+    enable_responses=True,
 )
 
 

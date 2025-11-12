@@ -18,6 +18,7 @@ agent = Agent(
     description="一个可以搜索网络的Agent",
     instruction="你是一个可以搜索网络的Agent，你可以搜索网络，回答问题。",
     tools=[web_search],
+    enable_responses=True,
 )
 
 runner = Runner(agent)

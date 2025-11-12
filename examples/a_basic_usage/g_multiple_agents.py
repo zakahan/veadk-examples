@@ -4,7 +4,7 @@ from uuid import uuid4
 from veadk import Agent, Runner
 from veadk.agents.sequential_agent import SequentialAgent
 
-seq = True  # 可以选择顺序执行，也可以选择LLM决定执行顺序
+seq = False  # 可以选择顺序执行，也可以选择LLM决定执行顺序
 # 多Agent协同 & 顺便演示一下WorkflowAgent
 # 整个架构
 # root_agent ->
@@ -37,6 +37,10 @@ email_send_agent = Agent(
     description="一个可以发送消息的Agent",
     instruction="你是一个可以发送消息的Agent，你可以发送邮件",
     tools=[send_email],
+    enable_responses=True,
+    model_extra_config={
+        "extra_body": {"thinking": {"type": "disabled"}},
+    },
 )
 
 email_get_agent = Agent(
@@ -44,6 +48,9 @@ email_get_agent = Agent(
     description="一个可以获取邮件的Agent",
     instruction="你是一个可以获取邮件的Agent，你可以获取邮件(get_email)，回答问题。",
     tools=[get_email],
+    model_extra_config={
+        "extra_body": {"thinking": {"type": "disabled"}},
+    },
 )
 
 if seq:
@@ -59,6 +66,10 @@ else:
         description="一个可以发送消息获取消息的Agent",
         instruction="你是一个可以发送消息的Agent，你可以发送消息，回答问题。",
         sub_agents=[email_send_agent, email_get_agent],
+        enable_responses=True,
+        model_extra_config={
+            "extra_body": {"thinking": {"type": "disabled"}},
+        },
     )
     runner = Runner(root_agent)
 

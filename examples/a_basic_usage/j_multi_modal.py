@@ -51,13 +51,13 @@ if __name__ == "__main__":
         ),
         "你描述的真好，能不能根据这个文字描述生成一张类似的图片呢？（不要水印）",
     ]
-
+    session_id = uuid4().hex
     for message in messages:
         print(f"User: {message}")
         completion = asyncio.run(
             runner.run(
                 messages=message,
-                session_id=uuid4().hex,
+                session_id=session_id,
             )
         )
         print(completion)

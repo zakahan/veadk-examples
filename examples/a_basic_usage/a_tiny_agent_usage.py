@@ -5,7 +5,7 @@ from veadk import Agent, Runner
 
 # 请保证你已经拥有了config.yaml，并且设置好了api_key
 
-agent = Agent()
+agent = Agent(enable_responses=True)
 runner = Runner(agent)
 
 if __name__ == "__main__":

@@ -53,8 +53,9 @@ agent = Agent(
     knowledgebase=kb,
     tools=[calculate_date_difference],
     model_extra_config={
-        "extra_body": {"thinking": {"type": "disable"}},
+        "extra_body": {"thinking": {"type": "disabled"}},
     },
+    enable_responses=True,
 )
 
 

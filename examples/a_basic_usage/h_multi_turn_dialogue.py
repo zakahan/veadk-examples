@@ -18,6 +18,7 @@ agent = Agent(
     name="chat_agent",
     description="你是一个优秀的助手，你可以和用户进行对话。",
     instruction="不管用户说什么，你在回答的开头都要带上`你好`，然后再回答用户的问题。",
+    enable_responses=True,
 )
 
 
@@ -28,6 +29,8 @@ runner = Runner(
     short_term_memory=short_term_memory,  # 维护多轮对话的关键（当然你单轮对话也要设置这东西其实）
 )
 
+session_id = uuid4().hex
+
 
 # 整一个简单的多轮对话demo，具体内容自己玩哈
 async def main():
@@ -37,7 +40,7 @@ async def main():
             break
         completion = await runner.run(
             messages=user_input,
-            session_id=uuid4().hex,
+            session_id=session_id,
         )
         print(f"Assistant: {completion}")
 

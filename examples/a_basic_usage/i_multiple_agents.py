@@ -37,6 +37,7 @@ email_send_agent = Agent(
     description="一个可以发送消息的Agent",
     instruction="你是一个可以发送消息的Agent，你可以发送邮件",
     tools=[send_email],
+    enable_responses=True,
 )
 
 email_get_agent = Agent(
@@ -44,6 +45,7 @@ email_get_agent = Agent(
     description="一个可以获取邮件的Agent",
     instruction="你是一个可以获取邮件的Agent，你可以获取邮件(get_email)，回答问题。",
     tools=[get_email],
+    enable_responses=True,
 )
 
 if seq:
@@ -59,6 +61,7 @@ else:
         description="一个可以发送消息获取消息的Agent",
         instruction="你是一个可以发送消息的Agent，你可以发送消息，回答问题。",
         sub_agents=[email_send_agent, email_get_agent],
+        enable_responses=True,
     )
     runner = Runner(root_agent)
 

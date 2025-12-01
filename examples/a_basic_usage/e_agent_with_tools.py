@@ -86,13 +86,14 @@ agent = Agent(
     instruction=AGENT_INSTRUCTION,
     model_name="doubao-seed-1-6-250615",  # 模型名称
     tools=[draw_tarot_cards],
+    enable_responses=True,
 )
 runner = Runner(agent)
 
 if __name__ == "__main__":
     completion = asyncio.run(
         runner.run(
-            messages="我的中期答辩是否顺利？请用三张牌占卜并解读。",
+            messages="我的ResponsesAPI改造是否顺利？请用三张牌占卜并解读。",
             session_id="asdfghjkl",
         )
     )

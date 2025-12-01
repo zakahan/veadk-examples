@@ -26,6 +26,7 @@ agent = Agent(
     description="一个可以获取时间的Agent",
     instruction="你是一个可以获取时间的Agent，你可以获取时间，回答问题。",
     tools=[mcp_tool],
+    enable_responses=True,
 )
 
 runner = Runner(agent)

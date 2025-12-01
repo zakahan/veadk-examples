@@ -14,6 +14,7 @@ agent = Agent(
     instruction=AGENT_INSTRUCTION,  # Agent指令，你可以理解为system-prompt
     model_name="doubao-seed-1-6-250615",  # 模型名称
     model_api_base="https://ark.cn-beijing.volces.com/api/v3/",  # 模型的API地址（默认火山方舟平台）
+    enable_responses=True,
     # model_api_key=os.getenv("ARK_API_KEY"),  # 模型的API密钥也可以用这种方式
 )
 

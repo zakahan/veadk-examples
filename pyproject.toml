@@ -10,13 +10,16 @@ dependencies = [
     "opensearch-py>=2.8.0",
     "deepeval>=3.4.8",
     "prometheus-client>=0.22.1",
-    "litellm<=1.75", # 高版本有个loggingworker的bug，先降一下
     "tos>=2.8.7",
-    "veadk-python>=0.2.12",
+    "veadk-python==0.2.27",
     "volcengine>=1.0.203",
+    "json-repair>=0.54.2",
 ]
 
 [dependency-groups]
 dev = [
     "pre-commit>=4.3.0",
 ]
+
+[tool.uv.sources]
+veadk-python = { git = "https://github.com/zakahan/veadk-python.git", rev = "feat/responses_api_2" }
